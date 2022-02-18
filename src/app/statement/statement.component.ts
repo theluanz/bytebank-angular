@@ -1,3 +1,4 @@
+import { TransactionService } from './../../services/transaction.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,9 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./statement.component.scss'],
 })
 export class StatementComponent implements OnInit {
-  @Input() transfers: any;
+  transfers: any;
 
-  constructor() {}
+  constructor(private service: TransactionService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.transfers = this.service.transactions;
+  }
 }

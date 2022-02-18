@@ -1,14 +1,19 @@
-<table class="table">
-  <thead class="table__header">
-    <th class="table__header__body">Value</th>
-    <th class="table__header__body">Destiny</th>
-    <th class="table__header__body">Date</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let transfer of transfers" class="table__row">
-      <td class="table__content">{{ transfer?.value | currency }}</td>
-      <td class="table__content">{{ transfer?.destiny }}</td>
-      <td class="table__content">{{ transfer?.date | date: "short" }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <table class="table">
+    <thead class="table__header">
+      <th class="table__header__body">Value</th>
+      <th class="table__header__body">Destiny</th>
+      <th class="table__header__body">Date</th>
+    </thead>
+    <tbody *ngIf="transfers.length > 0; else noTransfers">
+      <tr *ngFor="let transfer of transfers" class="table__row">
+        <td class="table__content">{{ transfer?.value | currency }}</td>
+        <td class="table__content">{{ transfer?.destiny }}</td>
+        <td class="table__content">{{ transfer?.date | date: "short" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noTransfers>
+  <p>No transfers registred</p>
+</ng-template>
