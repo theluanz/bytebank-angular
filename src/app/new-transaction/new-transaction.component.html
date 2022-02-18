@@ -1,0 +1,30 @@
+<section class="container">
+  <form class="form" (ngSubmit)="transaction()">
+    <h2 class="form__title">New Transaction</h2>
+    <div class="form-field">
+      <label class="form-field__label" for="value">Value</label>
+      <input
+        class="form-field__input"
+        id="value"
+        type="text"
+        [(ngModel)]="value"
+        name="value"
+        placeholder="200"
+      />
+    </div>
+    <div class="form-field">
+      <label class="form-field__label" for="destiny">Destiny</label>
+      <input
+        class="form-field__input"
+        id="destiny"
+        type="text"
+        [(ngModel)]="destiny"
+        name="destiny"
+        placeholder="22222"
+      />
+    </div>
+    <div class="btn-wrapper">
+      <button type="submit" class="btn">Make Transaction</button>
+    </div>
+  </form>
+</section>
