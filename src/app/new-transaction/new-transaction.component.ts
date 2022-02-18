@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-new-transaction',
@@ -6,12 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-transaction.component.scss'],
 })
 export class NewTransaction {
-  public value!: Number;
-  public destiny!: Number;
+  @Output() onTransaction = new EventEmitter<any>();
+  value!: Number;
+  destiny!: Number;
 
-  constructor() {}
   transaction() {
-    console.log(this.value);
-    console.log(this.destiny);
+    this.onTransaction.emit({ value: this.value, destiny: this.destiny });
+    this.cleanForm();
+  }
+
+  cleanForm() {
+    this.value = 0;
+    this.destiny = 0;
   }
 }

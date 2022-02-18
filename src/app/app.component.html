@@ -1,1 +1,5 @@
-<app-new-transaction></app-new-transaction>
+<app-new-transaction
+  (onTransaction)="transaction($event)"
+></app-new-transaction>
+
+<app-statement [transfers]="transfers"></app-statement>
