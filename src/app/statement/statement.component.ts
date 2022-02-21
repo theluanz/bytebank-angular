@@ -1,5 +1,6 @@
 import { TransactionService } from './../../services/transaction.service';
 import { Component, Input, OnInit } from '@angular/core';
+import Transaction from '../models/transaction.model';
 
 @Component({
   selector: 'app-statement',
@@ -9,9 +10,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class StatementComponent implements OnInit {
   transfers: any;
 
-  constructor(private service: TransactionService) {}
+  constructor(private transactionService: TransactionService) {}
 
   ngOnInit(): void {
-    this.transfers = this.service.transactions;
+    this.transactionService
+      .getAllTransactions()
+      .subscribe((transfers: Transaction[]) => {
+        console.table(transfers);
+        this.transfers = transfers;
+      });
   }
 }

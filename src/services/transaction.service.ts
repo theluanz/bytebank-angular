@@ -1,21 +1,29 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import Transaction from 'src/app/models/transaction.model';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class TransactionService {
-  private transactionList: any[];
+  private transactionList: Transaction[];
+  private url = 'http://localhost:3000/transactions';
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     this.transactionList = [];
   }
+
   get transactions() {
     return this.transactionList;
   }
 
-  addNewTransaction(transfer: any) {
+  getAllTransactions(): Observable<Transaction[]> {
+    return this.httpClient.get<Transaction[]>(this.url);
+  }
+
+  addNewTransaction(transfer: Transaction): Observable<Transaction> {
     this.hydrateData(transfer);
-    this.transactionList.push(transfer);
+    return this.httpClient.post<Transaction>(this.url, transfer);
   }
   private hydrateData(transfer: any) {
     transfer.date = new Date();

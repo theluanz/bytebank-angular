@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bytebank';
-  constructor(private service: TransactionService) {}
+  constructor(private transactionService: TransactionService) {}
 
   transaction($event: any) {
-    this.service.addNewTransaction($event);
+    this.transactionService.addNewTransaction($event);
   }
 }

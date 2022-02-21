@@ -1,3 +1,5 @@
+import Transaction from '../models/transaction.model';
+import { TransactionService } from './../../services/transaction.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -7,16 +9,29 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class NewTransaction {
   @Output() onTransaction = new EventEmitter<any>();
-  value!: Number;
-  destiny!: Number;
+  value!: number;
+  destiny!: number;
 
   transaction() {
-    this.onTransaction.emit({ value: this.value, destiny: this.destiny });
-    this.cleanForm();
+    const newTransaction: Transaction = {
+      value: this.value,
+      destiny: this.destiny,
+    };
+    this.transactionService.addNewTransaction(newTransaction).subscribe(
+      (result) => {
+        console.log(result);
+        this.cleanForm();
+      },
+      (error) => console.log(error)
+    );
   }
 
   cleanForm() {
     this.value = 0;
     this.destiny = 0;
   }
+  /**
+   *
+   */
+  constructor(private transactionService: TransactionService) {}
 }

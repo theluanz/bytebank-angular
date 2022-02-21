@@ -1,11 +1,11 @@
 <div class="container">
-  <table class="table">
+  <table class="table" *ngIf="transfers?.length > 0; else noTransfers">
     <thead class="table__header">
       <th class="table__header__body">Value</th>
       <th class="table__header__body">Destiny</th>
       <th class="table__header__body">Date</th>
     </thead>
-    <tbody *ngIf="transfers.length > 0; else noTransfers">
+    <tbody>
       <tr *ngFor="let transfer of transfers" class="table__row">
         <td class="table__content">{{ transfer?.value | currency }}</td>
         <td class="table__content">{{ transfer?.destiny }}</td>
