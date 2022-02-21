@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { NewTransaction } from './new-transaction/new-transaction.component';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(localePt, 'pt');
 @NgModule({
   declarations: [AppComponent, NewTransaction, StatementComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [
     {
       provide: LOCALE_ID,

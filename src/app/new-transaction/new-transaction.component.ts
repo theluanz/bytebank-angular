@@ -1,6 +1,7 @@
 import Transaction from '../models/transaction.model';
 import { TransactionService } from './../../services/transaction.service';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-transaction',
@@ -12,6 +13,11 @@ export class NewTransaction {
   value!: number;
   destiny!: number;
 
+  constructor(
+    private transactionService: TransactionService,
+    private router: Router
+  ) {}
+
   transaction() {
     const newTransaction: Transaction = {
       value: this.value,
@@ -21,6 +27,7 @@ export class NewTransaction {
       (result) => {
         console.log(result);
         this.cleanForm();
+        this.router.navigateByUrl('statement');
       },
       (error) => console.log(error)
     );
@@ -30,8 +37,4 @@ export class NewTransaction {
     this.value = 0;
     this.destiny = 0;
   }
-  /**
-   *
-   */
-  constructor(private transactionService: TransactionService) {}
 }
